@@ -1,0 +1,2457 @@
+<html><head><base href="." />
+  <link rel="icon" type="image/webp" href="Favicon.webp">
+  <link rel="shortcut icon" type="image/webp" href="Favicon.webp">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÐOGE TON - The Future of Meme Coins on TON Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+  
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px; /* Reduced from higher value, matches navbar height */
+    }
+  
+    :root {
+      --primary: #3498db;
+      --secondary: #2ecc71;
+      --accent: #e4ab1d; /* Changed to Dogecoin gold */
+      --dark: #2c3e50;
+      --light: #ecf0f1;
+      --primary-dark: #000000;
+      --primary-blue: #0089cd;
+      --accent-blue: #0086cb;
+      --glow-blue: #0088cc;
+      --doge-gold: #e4ab1d;
+    }
+  
+    body {
+      background: -webkit-linear-gradient(146deg,#000000,#030032); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(146deg,#000000,#030032); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      color: white;
+      min-height: 100vh;
+      display: flex; /* Add this */
+      flex-direction: column; /* Add this */
+    }
+  
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem;
+      z-index: 1000;
+      height: 72px; /* Explicitly set navbar height */
+      transition: transform 0.3s ease;
+    }
+  
+    /* Add this new class for hiding the navbar */
+    .navbar-hidden {
+      transform: translateY(-100%);
+    }
+  
+    /* Remove hover effect since there's no background */
+    .navbar:hover {
+      background: none;
+    }
+  
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem; /* Add space between logo and text */
+      height: 40px;
+    }
+  
+    .nav-brand img {
+      height: 100%;
+      object-fit: contain;
+    }
+  
+    .nav-brand-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, var(--primary-blue), var(--doge-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(52, 152, 219, 0.5),
+        0 0 20px rgba(228, 171, 29, 0.3);
+      transition: all 0.3s ease;
+    }
+  
+    .nav-brand-text:hover {
+      text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 15px rgba(52, 152, 219, 0.7),
+        0 0 30px rgba(228, 171, 29, 0.5);
+      transform: scale(1.05);
+    }
+  
+    .nav-links {
+      display: flex;
+      gap: 1rem; /* Reduced from 2rem */
+    }
+  
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 3px 5px; /* Reduced from 5px 10px */
+      font-size: 0.9rem; /* Added to reduce text size */
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Enhanced text shadow for better visibility */
+    }
+  
+    .nav-links a:hover {
+      color: var(--accent);
+      transform: scale(1.1);
+      text-shadow: 0 0 10px var(--accent);
+    }
+  
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+  
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+  
+    .language-switch {
+      margin-left: 1rem;
+    }
+  
+    .lang-btn {
+      background: linear-gradient(45deg, var(--primary-blue), var(--doge-gold));
+      border: none;
+      border-radius: 20px;
+      padding: 5px 15px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+  
+    .lang-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+    }
+  
+    .current-lang {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  
+    .lang-btn i {
+      font-size: 0.9rem;
+    }
+  
+    @media (max-width: 768px) {
+      .language-switch {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+      }
+    }
+  
+    section {
+      padding: 6rem 2rem 4rem; /* Reduced top padding from higher value */
+      max-width: 1200px;
+      margin: 0 auto;
+      flex: 1 0 auto; /* Add this */
+    }
+  
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 120px; /* Increase this value to push content down further */
+      min-height: 800px; /* Added minimum height */
+    }
+  
+    .logo-container {
+      width: 180px; /* Slightly smaller */
+      height: 180px;
+      margin-bottom: 2rem;
+      animation: float 3s ease-in-out infinite;
+      margin-top: 50px; /* Add margin-top to push logo down */
+    }
+  
+    .logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(52, 152, 219, 0.5));
+    }
+  
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, var(--primary-blue), var(--doge-gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(228, 171, 29, 0.3);
+    }
+  
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem 0;
+      flex-wrap: nowrap; /* Prevent wrapping */
+      width: 100%;
+      max-width: 800px; /* Control maximum width */
+    }
+  
+    .stat-card {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      min-width: 150px; /* Set minimum width */
+      max-width: 200px; /* Set maximum width */
+    }
+  
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(228, 171, 29, 0.2);
+    }
+  
+    .about {
+      padding: 6rem 2rem; /* Reduced padding */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+  
+    .about-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .about-image {
+      position: relative;
+      padding-top: 100%;
+    }
+  
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('Cartera con monedas.webp'); /* Changed from 'wallet.webp' to 'Cartera con monedas.webp' */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      animation: pulse 2s ease-in-out infinite;
+    }
+  
+    .features {
+      padding: 6rem 2rem; /* Reduced padding */
+      text-align: center;
+    }
+  
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+  
+    .feature-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+  
+    .feature-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--doge-gold);
+    }
+  
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+  
+    .cta-button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, var(--primary-blue), var(--doge-gold));
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 2rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+  
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+    }
+  
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+  
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+  
+    .particle {
+      position: absolute;
+      background: rgba(52, 152, 219, 0.2);
+      border-radius: 50%;
+      background-image: url('DOGE ton mejorado 3D.webp');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+      animation: zigzagFloat linear infinite;
+      width: 15px;  
+      height: 15px; 
+      bottom: -20px;
+    }
+  
+    @keyframes zigzagFloat {
+      0% {
+        transform: translate(0, 100vh) rotate(0deg);
+        opacity: 0.3;
+      }
+      25% {
+        transform: translate(50px, 50vh) rotate(90deg);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translate(-50px, 0vh) rotate(180deg);
+        opacity: 0.3;
+      }
+      75% {
+        transform: translate(25px, -50vh) rotate(270deg);
+        opacity: 0.3;
+      }
+      100% {
+        transform: translate(0, -100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+  
+      .stats {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .stat-card {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .hero {
+        padding-top: 100px; /* Slightly less padding on mobile */
+      }
+      
+      .about-content .cta-button {
+        width: 100%;
+        justify-content: center;
+      }
+  
+      section {
+        padding: 4rem 1rem; /* Even smaller padding on mobile */
+      }
+  
+      .our-plans {
+        padding: 4rem 1rem;
+      }
+  
+      .contract {
+        padding: 4rem 1rem;
+      }
+    }
+  
+    .about-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+    }
+  
+    .about-content .cta-button i {
+      font-size: 1.2rem;
+    }
+  
+    @media (max-width: 768px) {
+      .about-content div {
+        justify-content: center;
+      }
+    }
+  
+    .team {
+      padding: 6rem 2rem; /* Reduced from higher padding value */
+      text-align: center;
+    }
+  
+    .team h2 {
+      font-size: 2.5rem; /* Match Token Distribution font size */
+      margin-bottom: 3rem;
+      text-align: center;
+      color: var(--doge-gold); /* Match Token Distribution color */
+    }
+  
+    .team-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem; /* Reduced from 3rem to make it more compact */
+      align-items: center;
+    }
+  
+    .team-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      width: 100%;
+    }
+  
+    .team-member {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem; /* Reduced padding from 2rem */
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+      flex: 0 1 280px; /* Reduced from 300px to make containers smaller */
+    }
+  
+    .member-avatar {
+      margin-bottom: 0.8rem; /* Reduced from 1rem */
+    }
+  
+    .member-avatar img {
+      width: 140px; /* Increased from 120px */
+      height: 140px; /* Increased from 120px */
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  
+    .avatar-circle {
+      width: 140px; /* Increased from 120px */
+      height: 140px; /* Increased from 120px */
+      margin: 0 auto;
+      font-size: 3rem;
+    }
+  
+    .team-member h3 {
+      color: white;
+      margin-bottom: 0.3rem; /* Reduced from 0.5rem */
+    }
+  
+    .team-member p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.8rem; /* Reduced from 1rem */
+    }
+  
+    .social-links {
+      display: flex;
+      gap: 0.8rem; /* Reduced from 1rem */
+      justify-content: center;
+    }
+  
+    .team-member .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .team-member .social-links a:hover {
+      transform: scale(1.2);
+    }
+  
+    .team-member .social-links .whatsapp:hover {
+      box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+      color: #25d366;
+    }
+  
+    .team-member .social-links .telegram:hover {
+      box-shadow: 0 0 25px rgba(0, 136, 204, 0.8);
+      color: #0088cc;
+    }
+  
+    .team-member .social-links .instagram:hover {
+      box-shadow: 0 0 25px rgba(225, 48, 108, 0.8);
+      color: #e1306c;
+    }
+  
+    .team-member .social-links a::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      transform: scale(0);
+      transition: all 0.3s ease;
+      border-radius: 50%;
+    }
+  
+    .team-member .social-links a:hover::before {
+      transform: scale(1);
+    }
+  
+    .team-member .social-links a i {
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+  
+    .contract {
+      text-align: center;
+      padding: 6rem 2rem; /* Reduced padding */
+    }
+  
+    .contract h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: white;
+    }
+  
+    .contract-details {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  
+    .contract-info {
+      margin-bottom: 2rem;
+    }
+  
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  
+    .info-row:last-child {
+      border-bottom: none;
+    }
+  
+    .label {
+      font-weight: 600;
+      color: var(--accent);
+    }
+  
+    .contract-address-container {
+      position: relative;
+    }
+  
+    .copy-button {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      font-family: monospace;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+  
+    .copy-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  
+    .copy-notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(46, 204, 113, 0.9);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      color: white;
+      font-weight: 600;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1000;
+      text-align: center; /* Add this */
+      min-width: 200px; /* Add this */
+      white-space: nowrap; /* Add this */
+    }
+  
+    /* Update the confetti container styles */
+    .confetti-container {
+      position: fixed; /* Change from absolute to fixed */
+      top: 0;
+      left: 0;
+      width: 100vw; /* Change to viewport width */
+      height: 100vh; /* Change to viewport height */
+      pointer-events: none;
+      z-index: 999;
+    }
+  
+    /* Update the confetti styles */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      will-change: transform; /* Add this for better performance */
+    }
+  
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .contract {
+        padding: 4rem 1rem;
+      }
+    }
+  
+    /* New footer styles */
+    .footer {
+      background: linear-gradient(to left, #000000, #1c2980, #000000);
+      padding: 4rem 2rem;
+      margin-top: auto; /* Changed from 4rem to auto */
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+  
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem; /* Reduced from 1.5rem */
+    }
+  
+    .footer-social {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+  
+    .social-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .social-btn img {
+      width: 40px;
+      height: 40px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+  
+    .social-btn:hover {
+      transform: scale(1.2);
+    }
+  
+    .social-btn:hover.telegram {
+      box-shadow: 0 0 25px rgba(0, 136, 204, 0.8);
+    }
+  
+    .social-btn:hover.twitter {
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    }
+  
+    .social-btn:hover.youtube {
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+    }
+  
+    .social-btn:hover.coinmarketcap {
+      box-shadow: 0 0 25px rgba(22, 199, 132, 0.8);
+    }
+  
+    .social-btn:hover img {
+      transform: scale(1.1);
+    }
+  
+    /* New roadmap styles */
+    .roadmap {
+      padding: 6rem 2rem; /* Reduced padding */
+      text-align: center;
+      position: relative;
+    }
+  
+    .roadmap h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: white;
+    }
+  
+    .timeline {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      padding: 2rem 0;
+    }
+  
+    .timeline::before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-blue), var(--doge-gold));
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+  
+    .timeline-item {
+      width: 100%;
+      margin-bottom: 4rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+  
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    .timeline-content {
+      width: 45%;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      font-family: 'Quicksand', sans-serif;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  
+    .timeline-content:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent);
+      box-shadow: 0 15px 30px rgba(228, 171, 29, 0.2);
+    }
+  
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--doge-gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+  
+    .timeline-content:hover::after {
+      transform: scaleX(1);
+    }
+  
+    .timeline-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--doge-gold);
+      text-shadow: 0 0 10px rgba(228, 171, 29, 0.3);
+      transition: all 0.3s ease;
+    }
+  
+    .timeline-content:hover .timeline-title {
+      transform: scale(1.05);
+    }
+  
+    .timeline-description {
+      font-weight: 500;
+      line-height: 1.6;
+      color: white;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+  
+    .timeline-content:hover .timeline-description {
+      opacity: 1;
+    }
+  
+    @media (min-width: 769px) {
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-right: auto;
+        margin-left: 0;
+      }
+      
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: auto;
+        margin-right: 0;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .timeline-content {
+        width: calc(100% - 50px);
+        margin-left: 50px !important;
+      }
+    }
+  
+    .copyright {
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding-top: 0.5rem; /* Reduced from 1rem */
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      font-size: 0.9rem;
+    }
+  
+    /* New Project Difference Styles */
+    .project-difference {
+      padding: 6rem 2rem; /* Reduced padding */
+      position: relative;
+    }
+  
+    .project-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+  
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+    }
+  
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('vision.webp'); /* Changed from golden_doge to vision.webp */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      transition: all 0.3s ease;
+      z-index: 0;
+    }
+  
+    .project-content {
+      position: relative;
+      z-index: 1;
+    }
+  
+    .project-title {
+      font-size: 2rem;
+      color: var(--doge-gold);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(228, 171, 29, 0.3);
+    }
+  
+    .project-text {
+      color: white;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+  
+    .project-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+  
+    .project-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(228, 171, 29, 0.3);
+    }
+  
+    @media (max-width: 768px) {
+      .project-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  
+    /* Update the twitter social button styles in the footer section */
+    .social-btn:hover.twitter::before {
+      opacity: 1;
+      background-color: #000000; /* Black background for X */
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    }
+  
+    .social-btn.twitter i {
+      color: white !important; /* Force white color */
+      z-index: 1; /* Ensure icon stays above the background */
+    }
+  
+    [data-translate] {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+  
+    #musicControl {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+      transition: all 0.3s ease;
+    }
+  
+    #musicControl.playing {
+      background: rgba(52, 152, 219, 0.8);
+      box-shadow: 0 0 15px rgba(52, 152, 219, 0.8);
+    }
+  
+    #musicControl:hover {
+      transform: scale(1.1);
+    }
+  
+    #musicControl i {
+      color: white;
+      font-size: 24px;
+    }
+  
+    .hero p {
+      white-space: pre-line;
+      line-height: 1.5;
+      margin: 0 auto;
+      max-width: 800px;
+      font-size: 1.2rem;
+    }
+  
+    /* Our Plans Section Styles */
+    .our-plans {
+      padding: 6rem 2rem; /* Reduced padding */
+      background: rgba(255, 255, 255, 0.02);
+    }
+  
+    .plans-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    .plans-container h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: var(--doge-gold);
+    }
+  
+    .plans-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .plans-intro, .plans-conclusion {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      text-align: center;
+      color: white;
+    }
+  
+    .plan-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+  
+    .plan-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(52, 152, 219, 0.2);
+    }
+  
+    .plan-item h3 {
+      color: var(--doge-gold);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+  
+    .plan-item p {
+      color: white;
+      line-height: 1.6;
+    }
+  
+    @media (max-width: 768px) {
+      .our-plans {
+        padding: 4rem 1rem;
+      }
+      
+      .plans-container h2 {
+        font-size: 2rem;
+      }
+    }
+  
+    /* Add these styles to your existing CSS */
+    .token-distribution {
+      padding: 6rem 2rem; /* Reduced padding */
+      text-align: center;
+    }
+  
+    .token-distribution h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--doge-gold);
+    }
+  
+    .distribution-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4rem;
+      justify-content: center;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    .chart-container {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      position: relative;
+    }
+  
+    .distribution-details {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 15px;
+    }
+  
+    .distribution-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+  
+    .distribution-item:hover {
+      transform: translateX(10px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+  
+    .color-indicator {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+  
+    .item-label {
+      flex: 1;
+      text-align: left;
+      color: white;
+    }
+  
+    .percentage {
+      font-weight: bold;
+      color: var(--doge-gold);
+      min-width: 50px;
+      text-align: right;
+    }
+  
+    @media (max-width: 768px) {
+      .distribution-container {
+        flex-direction: column;
+        gap: 2rem;
+      }
+    }
+  
+    .disclaimer-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .disclaimer-content {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: modalAppear 0.3s ease-out;
+    }
+  
+    @keyframes modalAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .warning-icon {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+  
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  
+    .disclaimer-content h2 {
+      text-align: center;
+      color: var(--doge-gold);
+      margin-bottom: 1.5rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+    }
+  
+    .disclaimer-text {
+      margin-bottom: 2rem;
+      font-family: 'Quicksand', sans-serif;
+      line-height: 1.6;
+    }
+  
+    .disclaimer-text p {
+      margin-bottom: 1rem;
+    }
+  
+    .accept-risks-btn {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(45deg, var(--primary-blue), var(--doge-gold));
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
+    }
+  
+    .accept-risks-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(228, 171, 29, 0.3);
+    }
+  
+    .close-modal {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+    }
+  
+    .close-modal:hover {
+      color: white;
+      transform: scale(1.1);
+    }
+  
+    @media (max-width: 768px) {
+      .disclaimer-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+    }
+  
+    .email-link:hover {
+      transform: scale(1.05);
+    }
+  
+    .email-link:hover span {
+      color: var(--doge-gold);
+      border-bottom-color: var(--doge-gold);
+    }
+  
+    .contact-email {
+      text-align: center;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 !important; /* Reduced from 1rem */
+    }
+  </style>
+  </head>
+  <body>
+    <audio id="backgroundMusic" loop preload="auto">
+      <source src="Musica.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  
+    <div id="musicControl" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; cursor: pointer; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 50%; box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);">
+      <i class="fas fa-music" style="color: white; font-size: 24px;"></i>
+    </div>
+  
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="nav-brand">
+          <img src="DOGE ton mejorado 3D.webp" alt="ÐOGE TON" style="height: 40px;">
+          <span class="nav-brand-text">ÐOGE TON</span>
+        </div>
+        <div class="nav-links">
+          <a href="#home" data-translate="home">Home</a>
+          <a href="#about" data-translate="more">More</a>
+          <a href="#features" data-translate="benefits">Benefits</a>
+          <a href="#project-difference" data-translate="vision">Vision</a>
+          <a href="#plans" data-translate="plans">Plans</a>
+          <a href="#roadmap" data-translate="roadmap">Roadmap</a>
+          <a href="#distribution" data-translate="distribution">Distribution</a>
+          <a href="#team" data-translate="team">Team</a>
+          <a href="#contract" data-translate="token">Token</a>
+          <a href="#footer" data-translate="contact">Contact</a>
+          <div class="language-switch">
+            <button id="langToggle" class="lang-btn">
+              <span class="current-lang">EN</span>
+              <i class="fas fa-globe"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+    <section class="hero" id="home">
+      <div class="logo-container">
+        <img src="DOGE ton mejorado 3D.webp" alt="ÐOGE TON Logo" class="logo">
+      </div>
+      <h1>ÐOGE TON</h1>
+      <p data-translate="heroTitle">The Next Generation Meme Coin on TON Network
+  Making a difference with a unique project for cryptocurrency and blockchain world lovers.</p>
+      
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+        <a href="https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=STON" target="_blank" class="cta-button">Buy ÐOGE TON</a>
+        <a href="https://tonscan.org/jetton/EQAekpwR3w2zlK9NnsVJs2kfbzeeeJUMv9Jt9hG0eOBeKW6h#transactions" target="_blank" class="cta-button">Token</a>
+      </div>
+  
+      <div id="stats" class="stats">
+        <div class="stat-card">
+          <h3 data-translate="marketCap">Market Cap</h3>
+          <p class="stat-value">$12K</p>
+        </div>
+        <div class="stat-card">
+          <h3 data-translate="holders">Holders</h3>
+          <p class="stat-value">12+</p>
+        </div>
+        <div class="stat-card">
+          <h3 data-translate="volume">24h Volume</h3>
+          <p class="stat-value">$350K</p>
+        </div>
+      </div>
+  
+    </section>
+  
+    <section id="about" class="about">
+      <div class="about-content">
+        <h2 data-translate="aboutTitle">About ÐOGE TON</h2>
+        <p data-translate="aboutText">ÐOGE TON is much more than just a meme coin: it's a community-driven movement backed by TON Network's ultra-fast infrastructure. Designed to unite the ÐOGE and TON communities, especially on Telegram, this coin fulfills its founder's dream of creating a meme coin with real utility. Our vision focuses on providing more security for long-term investors, developing a self-sustainable digital asset that, through smart liquidity reinvestment plans, will prevent price drops over time. ÐOGE TON is not just a Token, it's a futuristic vision that combines innovation, trust, and functionality.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="https://t.me/dogeton_comunidad_es" target="_blank" class="cta-button">
+            <i class="fab fa-telegram"></i> Join Spanish Community
+          </a>
+          <a href="https://t.me/dogeton_Community_en" target="_blank" class="cta-button">
+            <i class="fab fa-telegram"></i> Join English Community
+          </a>
+        </div>
+      </div>
+      <div class="about-image"></div>
+    </section>
+  
+    <section class="features" id="features">
+      <h2 data-translate="whyChoose">Why Choose ÐOGE TON?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <i class="fas fa-bolt"></i>
+          <h3 data-translate="lightningFast">Lightning Fast</h3>
+          <p data-translate="lightningText">Taking advantage of the TON network, our transactions are instant, with minimal fees and the convenience of performing any operation directly from Telegram.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-users"></i>
+          <h3 data-translate="communityDriven">Community Driven</h3>
+          <p data-translate="communityText">Governed by and for the community. You will have the final say in every important decision, approving or rejecting future projects and changes.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-fire"></i>
+          <h3 data-translate="deflationary">Smart Reinvestment</h3>
+          <p data-translate="deflationaryText">We will implement strategies to execute sales at historical highs and buybacks during dips, returning liquidity to the market and maintaining token price stability.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3 data-translate="secure">Security and Transparency</h3>
+          <p data-translate="secureText">Each team member is presented with real names and contacts, an uncommon practice in this sector, ensuring trust and security for investors.</p>
+        </div>
+      </div>
+    </section>
+  
+    <section class="project-difference" id="project-difference">
+      <div class="project-container">
+        <div class="project-card">
+          <div class="project-content">
+            <img src="vision.webp" alt="DOGE TON Vision" class="project-image"> <!-- Changed from DOGE ton mejorado 3D.webp to vision.webp -->
+            <h3 class="project-title" data-translate="ourVision">Our Vision</h3>
+            <p class="project-text" data-translate="visionText">
+              ÐOGE TON is not just another cryptocurrency or a meme coin launched to take advantage of the market. It's a revolutionary fusion of DOGE's community spirit and TON Network's advanced technology. Our vision is to build a vibrant ecosystem where meme culture integrates with real utility, creating a community-driven platform that is both fun and functional. We want to avoid the common mistakes that have led to the failure of many cryptocurrency projects. With a solid and structured plan, we seek to make a genuine difference in investor confidence. We learn from the past to build a sustainable future, with a strategy focused on security, utility, and transparency. Only the creator will have access to ÐOGE TON's main wallets, preventing any mishandling of funds.
+            </p>
+          </div>
+        </div>
+  
+        <div class="project-card">
+          <div class="project-content">
+            <img src="Iniciativa.webp" alt="DOGE TON Innovation" class="project-image"> <!-- Changed from wallet.webp to Iniciativa.webp -->
+            <h3 class="project-title" data-translate="whyDifferent">Why We're Different</h3>
+            <p class="project-text" data-translate="differentText">
+              For more than five years, we have witnessed how some projects have exploited people's desperation, promising impossible dreams and leaving investors with significant losses. At ÐOGE TON, our philosophy is completely different. We believe in total transparency. That's why all team data is available, an uncommon act that reinforces our trust and commitment. Additionally, we started with a genuine community, without bots or artificial member inflation. Those who trust us from the beginning will be the biggest beneficiaries in the long term, because we are building something real, from scratch, with the intention of lasting forever.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="our-plans" id="plans">
+      <div class="plans-container">
+        <h2 data-translate="plansTitle">Our Plans</h2>
+        <div class="plans-content">
+          <p class="plans-intro" data-translate="plansIntro">
+            At ÐOGE TON, we're not just looking to develop a cryptocurrency, but to create a dynamic ecosystem that continuously benefits our community.
+          </p>
+          
+          <div class="plan-item">
+            <h3 data-translate="participativeCommunityTitle">Participative Community</h3>
+            <p data-translate="participativeCommunityText">
+              Unlike other projects, we'll make important decisions together with our community. We'll conduct surveys to evaluate new ideas, such as games and applications, ensuring that every step aligns with our users' expectations and needs.
+            </p>
+          </div>
+          
+          <div class="plan-item">
+            <h3 data-translate="realUtilityTitle">Real Utility Generation</h3>
+            <p data-translate="realUtilityText">
+              We plan to launch a staking section where token holders can invest and earn benefits. We'll use the generated funds for buying and selling products like phones, food, and more, ensuring daily profits. These will be distributed equitably: 60% for investors, 20% for adding token liquidity, and 20% for the team.
+            </p>
+          </div>
+          
+          <div class="plan-item">
+            <h3 data-translate="tasksWebTitle">Tasks and Advertising Platform</h3>
+            <p data-translate="tasksWebText">
+              We'll launch a platform where users can perform advertising tasks, such as interacting with posts or joining groups, receiving ÐOGE TON rewards. This will generate high token demand, strengthening its long-term value.
+            </p>
+          </div>
+          
+          <div class="plan-item">
+            <h3 data-translate="youtubeTitle">YouTube and Live Interaction</h3>
+            <p data-translate="youtubeText">
+              Through our YouTube channel, we'll conduct live streams to answer questions, interview experts, and educate about trading. 50% of the channel's earnings will be reinvested in token liquidity, promoting sustainable project growth.
+            </p>
+          </div>
+          
+          <div class="plan-item">
+            <h3 data-translate="gamesTitle">Games and More</h3>
+            <p data-translate="gamesText">
+              We plan to develop addictive games where users can earn ÐOGE TON, attracting more people to the ecosystem and generating a positive cycle for the community.
+            </p>
+          </div>
+          
+          <p class="plans-conclusion" data-translate="plansConclusion">
+            We want ÐOGE TON to be much more than just a project: it will be a revolution in the cryptocurrency world.
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <section id="roadmap" class="roadmap">
+      <h2 data-translate="roadmapTitle">Roadmap</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap1">Create ÐOGE TON token</h3>
+            <p class="timeline-description" data-translate="roadmap1desc">Launch of the initial token on TON Network</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap2">Market Listing</h3>
+            <p class="timeline-description" data-translate="roadmap2desc">List token on the market</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap3">Community Growth</h3>
+            <p class="timeline-description" data-translate="roadmap3desc">Grow our community to over 100,000 members</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap4">Contract Renouncement</h3>
+            <p class="timeline-description" data-translate="roadmap4desc">Renounce the contract to prevent creation of more tokens</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap5">Key Partnerships</h3>
+            <p class="timeline-description" data-translate="roadmap5desc">Establish key collaborations</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap6">Game Development</h3>
+            <p class="timeline-description" data-translate="roadmap6desc">Develop a game that allows earning ÐOGE TON</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap7">Task Platform Launch</h3>
+            <p class="timeline-description" data-translate="roadmap7desc">Launch a task website with a Telegram bot</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3 class="timeline-title" data-translate="roadmap8">CoinMarketCap Listing</h3>
+            <p class="timeline-description" data-translate="roadmap8desc">Get ÐOGE TON listed on CoinMarketCap</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="token-distribution" id="distribution">
+      <h2 data-translate="tokenDistTitle">Token Distribution</h2>
+      <div class="distribution-container">
+        <div class="chart-container">
+          <canvas id="distributionChart"></canvas>
+        </div>
+        <div class="distribution-details">
+          <div class="distribution-item" data-percentage="50">
+            <div class="color-indicator" style="background: #3498db;"></div>
+            <span class="item-label" data-translate="marketLiquidity">Market Liquidity (TON vs ÐOGE TON)</span>
+            <span class="percentage">50%</span>
+          </div>
+          <div class="distribution-item" data-percentage="20">
+            <div class="color-indicator" style="background: #2ecc71;"></div>
+            <span class="item-label" data-translate="reserveFund">Reserve Fund</span>
+            <span class="percentage">20%</span>
+          </div>
+          <div class="distribution-item" data-percentage="15">
+            <div class="color-indicator" style="background: #e4ab1d;"></div>
+            <span class="item-label" data-translate="communityRewards">Community Rewards</span>
+            <span class="percentage">15%</span>
+          </div>
+          <div class="distribution-item" data-percentage="10">
+            <div class="color-indicator" style="background: #e74c3c;"></div>
+            <span class="item-label" data-translate="salaryPayments">Salary Payments</span>
+            <span class="percentage">10%</span>
+          </div>
+          <div class="distribution-item" data-percentage="5">
+            <div class="color-indicator" style="background: #9b59b6;"></div>
+            <span class="item-label" data-translate="marketing">Marketing & Advertising</span>
+            <span class="percentage">5%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section id="team" class="team">
+      <h2 data-translate="teamTitle">Our Team</h2>
+      <div class="team-container">
+        <!-- CEO Level -->
+        <div class="team-row">
+          <div class="team-member">
+            <div class="member-avatar">
+              <img src="Yo Ceo.webp" alt="CEO" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h3>Michel Díaz Jomarrón</h3>
+            <p data-translate="ceoFounder">CEO & Founder</p>
+            <div class="social-links">
+              <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/username" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a href="https://instagram.com/username" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Admin Level -->
+        <div class="team-row">
+          <div class="team-member">
+            <div class="member-avatar">
+              <img src="Admin 1.webp" alt="Operations Director" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h3>Sarah Smith</h3>
+            <p data-translate="operationsDirector">Operations Director</p>
+            <div class="social-links">
+              <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/username" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a href="https://instagram.com/username" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <img src="Admin 2.webp" alt="Technical Director" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h3>Mike Johnson</h3>
+            <p data-translate="technicalDirector">Technical Director</p>
+            <div class="social-links">
+              <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/username" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a href="https://instagram.com/username" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Team Level -->
+        <div class="team-row">
+          <div class="team-member">
+            <div class="member-avatar">
+              <img src="Admin 3.webp" alt="Marketing Manager" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h3>David Lee</h3>
+            <p data-translate="marketingManager">Marketing Manager</p>
+            <div class="social-links">
+              <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/username" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a href="https://instagram.com/username" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <img src="Admin 4.webp" alt="Community Manager" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h3>Emily Brown</h3>
+            <p data-translate="communityManager">Community Manager</p>
+            <div class="social-links">
+              <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/username" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a href="https://instagram.com/username" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+          <div class="team-member">
+            <div class="member-avatar">
+              <img src="Admin 5.webp" alt="Development Lead" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <h3>Alex Wilson</h3>
+            <p data-translate="developmentLead">Development Lead</p>
+            <div class="social-links">
+              <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/username" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+              </a>
+              <a href="https://instagram.com/username" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section id="contract" class="contract">
+      <h2 data-translate="contractTitle">Token Contract</h2>
+      <div class="contract-details">
+        <div class="contract-info">
+          <div class="info-row">
+            <span class="label" data-translate="contractName">Name:</span>
+            <span class="value">ÐOGE TON</span>
+          </div>
+          <div class="info-row">
+            <span class="label" data-translate="contractSymbol">Symbol:</span>
+            <span class="value">ÐOGETON</span>
+          </div>
+          <div class="info-row">
+            <span class="label" data-translate="contractMaxSupply">Max Supply:</span>
+            <span class="value">10,000,000,000 ÐOGETON</span>
+          </div>
+          <div class="info-row">
+            <span class="label" data-translate="contractNetwork">Network:</span>
+            <span class="value">TON Network</span>
+          </div>
+        </div>
+        <div class="contract-address-container">
+          <button class="copy-button" id="copyContract">
+            <span class="contract-text">EQAekpwR3w2zlK9NnsVJs2kfbzeeeJUMv9Jt9hG0eOBeKW6h</span>
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+      </div>
+      <div class="copy-notification" id="copyNotification">
+        <span data-translate="copiedSuccess">Contract Copied Successfully!</span>
+        <div class="confetti-container" id="confettiContainer"></div>
+      </div>
+    </section>
+  
+    <footer class="footer" id="footer">
+      <div class="footer-content">
+        <div class="footer-social">
+          <a href="https://t.me/DOGE_TON_Canal" target="_blank" class="social-btn telegram">
+            <img src="Telegram.webp" alt="Telegram">
+          </a>
+          <a href="https://x.com/DogeTon2025" target="_blank" class="social-btn twitter">
+            <img src="X.webp" alt="X (Twitter)">
+          </a>
+          <a href="https://www.youtube.com/@DogeTon2025" target="_blank" class="social-btn youtube">
+            <img src="Youtube.webp" alt="YouTube">
+          </a>
+          <a href="https://coinmarketcap.com/community/es/profile/DogeTon2025/" target="_blank" class="social-btn coinmarketcap">
+            <img src="Coin Market cap.webp" alt="CoinMarketCap">
+          </a>
+        </div>
+        <div class="contact-email">
+          <a href="mailto:dogeton2025@gmail.com" class="email-link">
+            <i class="fas fa-envelope" style="color: var(--doge-gold);"></i>
+            <span style="border-bottom: 1px solid transparent; transition: all 0.3s ease;">dogeton2025@gmail.com</span>
+          </a>
+        </div>
+        <div class="copyright">
+          © 2025 <span>ÐOGE TON</span>. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+  
+    <div class="particles" id="particles"></div>
+  
+    <div id="disclaimerModal" class="disclaimer-modal">
+      <div class="disclaimer-content">
+        <span class="close-modal">&times;</span>
+        <div class="warning-icon">⚠️</div>
+        <h2>Warning and Disclaimer</h2>
+        <div class="disclaimer-text">
+          <p>Investing in cryptocurrencies involves significant risks. Prices are highly volatile and can fluctuate rapidly, potentially resulting in partial or total loss of your investment. We strongly encourage you to conduct your own research (DYOR) and consult with a financial advisor before making any decisions.</p>
+          
+          <p><strong>Important:</strong> Our project is fully transparent, and we openly provide information to build trust with our community. However, we are not responsible for poor handling, impulsive decisions, or poorly planned purchases made by users. Every purchase is at your own risk and discretion.</p>
+          
+          <p>By proceeding, you acknowledge that you understand the risks associated with cryptocurrencies and release this project from any liability related to your financial decisions.</p>
+        </div>
+        <button id="acceptRisks" class="accept-risks-btn">Accept the risks and continue</button>
+      </div>
+    </div>
+  
+    <script>
+      // Intersection Observer for animation on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+  
+      document.querySelectorAll('.feature-card, .stat-card').forEach((el) => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s ease-out';
+        observer.observe(el);
+      });
+  
+      // Autoplay music on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        const audio = document.getElementById('backgroundMusic');
+        const musicControl = document.getElementById('musicControl');
+        const musicIcon = musicControl.querySelector('i');
+        
+        // Try to autoplay music when page loads
+        let playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(_ => {
+            // Autoplay started successfully
+            musicControl.classList.add('playing');
+            musicIcon.classList.remove('fa-music');
+            musicIcon.classList.add('fa-pause');
+          })
+          .catch(error => {
+            // Auto-play was prevented
+            console.log("Autoplay prevented:", error);
+            // We'll keep the play icon since music isn't playing
+            musicIcon.classList.add('fa-music');
+            musicControl.classList.remove('playing');
+          });
+        }
+  
+        // Toggle music when clicking the button
+        musicControl.addEventListener('click', function() {
+          if (audio.paused) {
+            audio.play();
+            musicControl.classList.add('playing');
+            musicIcon.classList.remove('fa-music');
+            musicIcon.classList.add('fa-pause');
+          } else {
+            audio.pause();
+            musicControl.classList.remove('playing');
+            musicIcon.classList.remove('fa-pause');
+            musicIcon.classList.add('fa-music');
+          }
+        });
+      });
+  
+      // Create a scroll handler for hiding/showing navbar
+      let lastScroll = 0;
+      const navbar = document.querySelector('.navbar');
+  
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Determine scroll direction
+        if (currentScroll > lastScroll && currentScroll > 72) {
+          // Scrolling down & past navbar height
+          navbar.classList.add('navbar-hidden');
+        } else {
+          // Scrolling up
+          navbar.classList.remove('navbar-hidden');
+        }
+        
+        lastScroll = currentScroll;
+      });
+  
+      // Animate stats
+      function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          
+          // Handle different formats (K suffix, + suffix)
+          if (end.includes('+')) {
+            obj.innerHTML = Math.floor(progress * parseInt(end)) + '+';
+          } else if (end.includes('K')) {
+            obj.innerHTML = '$' + Math.floor(progress * parseInt(end)) + 'K';
+          } else {
+            obj.innerHTML = '$' + Math.floor(progress * parseInt(end.replace(/\D/g,'')));
+          }
+          
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+  
+      // Initialize stat animations when they come into view
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const value = entry.target.innerText;
+            entry.target.innerText = '0';
+            setTimeout(() => {
+              animateValue(entry.target, 0, value, 1500);
+            }, 500);
+          }
+        });
+      }, { threshold: 0.5 });
+  
+      document.querySelectorAll('.stat-value').forEach((stat) => {
+        statsObserver.observe(stat);
+      });
+  
+      // Copy contract address to clipboard
+      document.getElementById('copyContract').addEventListener('click', async function() {
+        const contractText = this.querySelector('.contract-text').textContent;
+        
+        try {
+          await navigator.clipboard.writeText(contractText);
+          const notification = document.getElementById('copyNotification');
+          notification.style.opacity = '1';
+          
+          // Create confetti effect
+          const container = document.getElementById('confettiContainer');
+          for(let i = 0; i < 50; i++) {
+            createConfetti(container);
+          }
+          
+          setTimeout(() => {
+            notification.style.opacity = '0';
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      });
+  
+      function createConfetti(container) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        
+        // Random position
+        const startX = Math.random() * window.innerWidth;
+        confetti.style.left = startX + 'px';
+        
+        // Random color
+        const colors = ['#3498db', '#0089cd', '#e4ab1d', '#0086cb', '#ffffff'];
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        // Random size
+        const size = Math.random() * 10 + 5;
+        confetti.style.width = size + 'px';
+        confetti.style.height = size + 'px';
+        
+        // Add animation
+        confetti.style.animation = `confettiFall ${Math.random() * 2 + 1}s linear forwards`;
+        
+        container.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          confetti.remove();
+        }, 3000);
+      }
+  
+      // Create floating particles
+      function createParticles() {
+        const container = document.getElementById('particles');
+        
+        // Clear existing particles
+        container.innerHTML = '';
+        
+        // Create 20 particles
+        for(let i = 0; i < 20; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          
+          // Random size between 15px and 20px
+          const size = Math.random() * 5 + 15;
+          particle.style.width = size + 'px';
+          particle.style.height = size + 'px';
+          
+          // Random horizontal position
+          particle.style.left = Math.random() * 100 + 'vw';
+          
+          // Random animation duration between 10 and 20 seconds (slower particles)
+          const duration = Math.random() * 10 + 10;
+          particle.style.animationDuration = duration + 's';
+          
+          // Random animation delays between 0 and 10 seconds
+          particle.style.animationDelay = (Math.random() * 10) + 's';
+          
+          // Add random initial rotation
+          const rotation = Math.random() * 360;
+          particle.style.transform = `rotate(${rotation}deg)`;
+          
+          container.appendChild(particle);
+        }
+      }
+  
+      // Initialize particles
+      createParticles();
+  
+      // Intersection Observer for roadmap animation
+      const roadmapObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+  
+      document.querySelectorAll('.timeline-item').forEach((item) => {
+        roadmapObserver.observe(item);
+      });
+  
+      document.querySelectorAll('.timeline-content').forEach((item, index) => {
+        item.addEventListener('mouseover', () => {
+          item.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        item.addEventListener('mouseout', () => {
+          item.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+  
+      // Language switcher functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const langToggle = document.getElementById('langToggle');
+        const currentLang = document.querySelector('.current-lang');
+        let isEnglish = true;
+  
+        const translations = {
+          en: {
+            home: "Home",
+            more: "More",
+            benefits: "Benefits",
+            vision: "Vision",
+            plans: "Plans",
+            roadmap: "Roadmap",
+            distribution: "Distribution",
+            team: "Team",
+            token: "Token",
+            contact: "Contact",
+            heroTitle: "The Next Generation Meme Coin on TON Network\nMaking a difference with a unique project for cryptocurrency and blockchain world lovers.",
+            marketCap: "Market Cap",
+            holders: "Holders",
+            volume: "24h Volume",
+            aboutTitle: "About ÐOGE TON",
+            aboutText: "ÐOGE TON is much more than just a meme coin: it's a community-driven movement backed by TON Network's ultra-fast infrastructure. Designed to unite the ÐOGE and TON communities, especially on Telegram, this coin fulfills its founder's dream of creating a meme coin with real utility. Our vision focuses on providing more security for long-term investors, developing a self-sustainable digital asset that, through smart liquidity reinvestment plans, will prevent price drops over time. ÐOGE TON is not just a Token, it's a futuristic vision that combines innovation, trust, and functionality.",
+            whyChoose: "Why Choose ÐOGE TON?",
+            lightningFast: "Lightning Fast",
+            lightningText: "Taking advantage of the TON network, our transactions are instant, with minimal fees and the convenience of performing any operation directly from Telegram.",
+            communityDriven: "Community Driven",
+            communityText: "Governed by and for the community. You will have the final say in every important decision, approving or rejecting future projects and changes.",
+            deflationary: "Smart Reinvestment",
+            deflationaryText: "We will implement strategies to execute sales at historical highs and buybacks during dips, returning liquidity to the market and maintaining token price stability.",
+            secure: "Security and Transparency",
+            secureText: "Each team member is presented with real names and contacts, an uncommon practice in this sector, ensuring trust and security for investors.",
+            ourVision: "Our Vision",
+            visionText: "ÐOGE TON is not just another cryptocurrency or a meme coin launched to take advantage of the market. It's a revolutionary fusion of DOGE's community spirit and TON Network's advanced technology. Our vision is to build a vibrant ecosystem where meme culture integrates with real utility, creating a community-driven platform that is both fun and functional. We want to avoid the common mistakes that have led to the failure of many cryptocurrency projects. With a solid and structured plan, we seek to make a genuine difference in investor confidence. We learn from the past to build a sustainable future, with a strategy focused on security, utility, and transparency. Only the creator will have access to ÐOGE TON's main wallets, preventing any mishandling of funds.",
+            whyDifferent: "Why We're Different",
+            differentText: "For more than five years, we have witnessed how some projects have exploited people's desperation, promising impossible dreams and leaving investors with significant losses. At ÐOGE TON, our philosophy is completely different. We believe in total transparency. That's why all team data is available, an uncommon act that reinforces our trust and commitment. Additionally, we started with a genuine community, without bots or artificial member inflation. Those who trust us from the beginning will be the biggest beneficiaries in the long term, because we are building something real, from scratch, with the intention of lasting forever.",
+            plansTitle: "Our Plans",
+            plansIntro: "At ÐOGE TON, we're not just looking to develop a cryptocurrency, but to create a dynamic ecosystem that continuously benefits our community.",
+            plansConclusion: "We want ÐOGE TON to be much more than just a project: it will be a revolution in the cryptocurrency world.",
+            participativeCommunityTitle: "Participative Community",
+            participativeCommunityText: "Unlike other projects, we'll make important decisions together with our community. We'll conduct surveys to evaluate new ideas, such as games and applications, ensuring that every step aligns with our users' expectations and needs.",
+            realUtilityTitle: "Real Utility Generation",
+            realUtilityText: "We plan to launch a staking section where token holders can invest and earn benefits. We'll use the generated funds for buying and selling products like phones, food, and more, ensuring daily profits. These will be distributed equitably: 60% for investors, 20% for adding token liquidity, and 20% for the team.",
+            tasksWebTitle: "Tasks and Advertising Platform",
+            tasksWebText: "We'll launch a platform where users can perform advertising tasks, such as interacting with posts or joining groups, receiving ÐOGE TON rewards. This will generate high token demand, strengthening its long-term value.",
+            youtubeTitle: "YouTube and Live Interaction",
+            youtubeText: "Through our YouTube channel, we'll conduct live streams to answer questions, interview experts, and educate about trading. 50% of the channel's earnings will be reinvested in token liquidity, promoting sustainable project growth.",
+            gamesTitle: "Games and More",
+            gamesText: "We plan to develop addictive games where users can earn ÐOGE TON, attracting more people to the ecosystem and generating a positive cycle for the community.",
+            roadmap1: "Create ÐOGE TON token",
+            roadmap1desc: "Launch of the initial token on TON Network",
+            roadmap2: "Market Listing",
+            roadmap2desc: "List token on the market",
+            roadmap3: "Community Growth",
+            roadmap3desc: "Grow our community to over 100,000 members",
+            roadmap4: "Contract Renouncement",
+            roadmap4desc: "Renounce the contract to prevent creation of more tokens",
+            roadmap5: "Key Partnerships",
+            roadmap5desc: "Establish key collaborations",
+            roadmap6: "Game Development",
+            roadmap6desc: "Develop a game that allows earning ÐOGE TON",
+            roadmap7: "Task Platform Launch",
+            roadmap7desc: "Launch a task website with a Telegram bot",
+            roadmap8: "CoinMarketCap Listing",
+            roadmap8desc: "Get ÐOGE TON listed on CoinMarketCap",
+            tokenDistTitle: "Token Distribution",
+            marketLiquidity: "Market Liquidity (TON vs ÐOGE TON)",
+            reserveFund: "Reserve Fund",
+            communityRewards: "Community Rewards",
+            salaryPayments: "Salary Payments",
+            marketing: "Marketing & Advertising",
+            teamTitle: "Our Team",
+            ceoFounder: "CEO & Founder",
+            operationsDirector: "Operations Director",
+            technicalDirector: "Technical Director",
+            marketingManager: "Marketing Manager",
+            communityManager: "Community Manager",
+            developmentLead: "Development Lead"
+          },
+          es: {
+            home: "Inicio",
+            more: "Más",
+            benefits: "Beneficios",
+            vision: "Visión",
+            plans: "Planes",
+            roadmap: "Ruta",
+            distribution: "Distribución",
+            team: "Equipo",
+            token: "Token",
+            contact: "Contacto",
+            heroTitle: "La Próxima Generación de Meme Coin en la Red TON\nHaciendo la diferencia con un proyecto único para amantes de las criptomonedas y la blockchain.",
+            marketCap: "Cap. de Mercado",
+            holders: "Holders",
+            volume: "Volumen 24h",
+            aboutTitle: "Sobre ÐOGE TON",
+            aboutText: "ÐOGE TON es mucho más que una simple meme coin: es un movimiento impulsado por la comunidad respaldado por la infraestructura ultra rápida de TON Network. Diseñado para unir las comunidades ÐOGE y TON, especialmente en Telegram, esta moneda cumple el sueño de su fundador de crear una meme coin con utilidad real. Nuestra visión se centra en brindar más seguridad a los inversores a largo plazo, desarrollando un activo digital autosustentable que, a través de planes inteligentes de reinversión de liquidez, evitará caídas de precios con el tiempo. ÐOGE TON no es solo un Token, es una visión futurista que combina innovación, confianza y funcionalidad.",
+            whyChoose: "¿Por Qué Elegir ÐOGE TON?",
+            lightningFast: "Ultra Rápido",
+            lightningText: "Aprovechando la red TON, nuestras transacciones son instantáneas, con tarifas mínimas y la comodidad de realizar cualquier operación directamente desde Telegram.",
+            communityDriven: "Impulsado por la Comunidad",
+            communityText: "Gobernado por y para la comunidad. Tendrás la última palabra en cada decisión importante, aprobando o rechazando futuros proyectos y cambios.",
+            deflationary: "Reinversión Inteligente",
+            deflationaryText: "Implementaremos estrategias para ejecutar ventas en máximos históricos y recompras durante las caídas, devolviendo liquidez al mercado y manteniendo la estabilidad del precio del token.",
+            secure: "Seguridad y Transparencia",
+            secureText: "Cada miembro del equipo se presenta con nombres y contactos reales, una práctica poco común en este sector, garantizando confianza y seguridad para los inversores.",
+            ourVision: "Nuestra Visión",
+            visionText: "ÐOGE TON no es solo otra criptomoneda o una meme coin lanzada para aprovechar el mercado. Es una fusión revolucionaria del espíritu comunitario de DOGE y la tecnología avanzada de TON Network. Nuestra visión es construir un ecosistema vibrante donde la cultura de los memes se integre con utilidad real, creando una plataforma impulsada por la comunidad que sea divertida y funcional. Queremos evitar los errores comunes que han llevado al fracaso de muchos proyectos de criptomonedas. Con un plan sólido y estructurado, buscamos hacer una diferencia genuina en la confianza de los inversores. Aprendemos del pasado para construir un futuro sostenible, con una estrategia enfocada en la seguridad, utilidad y transparencia. Solo el creador tendrá acceso a las billeteras principales de ÐOGE TON, evitando cualquier mal manejo de fondos.",
+            whyDifferent: "Por Qué Somos Diferentes",
+            differentText: "Durante más de cinco años, hemos sido testigos de cómo algunos proyectos han explotado la desesperación de las personas, prometiendo sueños imposibles y dejando a los inversores con pérdidas significativas. En ÐOGE TON, nuestra filosofía es completamente diferente. Creemos en la transparencia total. Por eso todos los datos del equipo están disponibles, un acto poco común que refuerza nuestra confianza y compromiso. Además, comenzamos con una comunidad genuina, sin bots ni inflación artificial de miembros. Aquellos que confían en nosotros desde el principio serán los mayores beneficiarios a largo plazo, porque estamos construyendo algo real, desde cero, con la intención de durar para siempre.",
+            plansTitle: "Nuestros Planes",
+            plansIntro: "En ÐOGE TON, no solo buscamos desarrollar una criptomoneda, sino crear un ecosistema dinámico que beneficie continuamente a nuestra comunidad.",
+            plansConclusion: "Queremos que ÐOGE TON sea mucho más que solo un proyecto: será una revolución en el mundo de las criptomonedas.",
+            participativeCommunityTitle: "Comunidad Participativa",
+            participativeCommunityText: "A diferencia de otros proyectos, tomaremos decisiones importantes junto con nuestra comunidad. Realizaremos encuestas para evaluar nuevas ideas, como juegos y aplicaciones, asegurando que cada paso se alinee con las expectativas y necesidades de nuestros usuarios.",
+            realUtilityTitle: "Generación de Utilidad Real",
+            realUtilityText: "Planeamos lanzar una sección de staking donde los poseedores de tokens puedan invertir y ganar beneficios. Usaremos los fondos generados para comprar y vender productos como teléfonos, comida y más, asegurando ganancias diarias. Estas se distribuirán equitativamente: 60% para inversores, 20% para agregar liquidez al token y 20% para el equipo.",
+            tasksWebTitle: "Plataforma de Tareas y Publicidad",
+            tasksWebText: "Lanzaremos una plataforma donde los usuarios puedan realizar tareas publicitarias, como interactuar con publicaciones o unirse a grupos, recibiendo recompensas en ÐOGE TON. Esto generará una alta demanda del token, fortaleciendo su valor a largo plazo.",
+            youtubeTitle: "YouTube e Interacción en Vivo",
+            youtubeText: "A través de nuestro canal de YouTube, realizaremos transmisiones en vivo para responder preguntas, entrevistar expertos y educar sobre trading. El 50% de las ganancias del canal se reinvertirán en liquidez del token, promoviendo el crecimiento sostenible del proyecto.",
+            gamesTitle: "Juegos y Más",
+            gamesText: "Planeamos desarrollar juegos adictivos donde los usuarios puedan ganar ÐOGE TON, atrayendo más personas al ecosistema y generando un ciclo positivo para la comunidad.",
+            roadmap1: "Crear token ÐOGE TON",
+            roadmap1desc: "Lanzamiento del token inicial en la Red TON",
+            roadmap2: "Listado en el Mercado",
+            roadmap2desc: "Listar el token en el mercado",
+            roadmap3: "Crecimiento de la Comunidad",
+            roadmap3desc: "Hacer crecer nuestra comunidad a más de 100,000 miembros",
+            roadmap4: "Renuncia al Contrato",
+            roadmap4desc: "Renunciar al contrato para evitar la creación de más tokens",
+            roadmap5: "Asociaciones Clave",
+            roadmap5desc: "Establecer colaboraciones clave",
+            roadmap6: "Desarrollo de Juego",
+            roadmap6desc: "Desarrollar un juego que permita ganar ÐOGE TON",
+            roadmap7: "Lanzamiento de Plataforma de Tareas",
+            roadmap7desc: "Lanzar un sitio web de tareas con un bot de Telegram",
+            roadmap8: "Listado en CoinMarketCap",
+            roadmap8desc: "Lograr que ÐOGE TON sea listado en CoinMarketCap",
+            tokenDistTitle: "Distribución de Tokens",
+            marketLiquidity: "Liquidez del Mercado (TON vs ÐOGE TON)",
+            reserveFund: "Fondo de Reserva",
+            communityRewards: "Recompensas de la Comunidad",
+            salaryPayments: "Pagos de Salarios",
+            marketing: "Marketing y Publicidad",
+            teamTitle: "Nuestro Equipo",
+            ceoFounder: "CEO y Fundador",
+            operationsDirector: "Director de Operaciones",
+            technicalDirector: "Director Técnico",
+            marketingManager: "Gerente de Marketing",
+            communityManager: "Gerente de Comunidad",
+            developmentLead: "Líder de Desarrollo"
+          }
+        };
+  
+        langToggle.addEventListener('click', function() {
+          isEnglish = !isEnglish;
+          currentLang.textContent = isEnglish ? 'EN' : 'ES';
+          
+          // Update content based on selected language
+          const lang = isEnglish ? 'en' : 'es';
+          updateContent(lang);
+        });
+  
+        function updateContent(lang) {
+          const navLinks = document.querySelectorAll('.nav-links a');
+          navLinks.forEach(link => {
+            const key = link.getAttribute('data-translate');
+            if (translations[lang][key]) {
+              link.textContent = translations[lang][key];
+            }
+          });
+  
+          // Update all elements with data-translate attribute
+          document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[lang][key]) {
+              element.textContent = translations[lang][key];
+            }
+          });
+  
+          // Special handling for hero text which contains newlines
+          const heroText = document.querySelector('.hero p');
+          if (heroText) {
+            heroText.textContent = translations[lang].heroTitle;
+          }
+  
+          // Update the feature cards
+          const featureCards = document.querySelectorAll('.feature-card');
+          featureCards.forEach((card, index) => {
+            const title = card.querySelector('h3');
+            const text = card.querySelector('p');
+            
+            if (index === 0) {
+              title.textContent = translations[lang].lightningFast;
+              text.textContent = translations[lang].lightningText;
+            } else if (index === 1) {
+              title.textContent = translations[lang].communityDriven;
+              text.textContent = translations[lang].communityText;
+            } else if (index === 2) {
+              title.textContent = translations[lang].deflationary;
+              text.textContent = translations[lang].deflationaryText;
+            } else if (index === 3) {
+              title.textContent = translations[lang].secure;
+              text.textContent = translations[lang].secureText;
+            }
+          });
+  
+          // Update about section
+          const aboutTitle = document.querySelector('.about-content h2');
+          const aboutText = document.querySelector('.about-content p');
+          if (aboutTitle) {
+            aboutTitle.textContent = translations[lang].aboutTitle;
+          }
+          if (aboutText) {
+            aboutText.textContent = translations[lang].aboutText;
+          }
+  
+          // Update Our Plans Section
+          const plansTitle = document.querySelector('.our-plans h2');
+          const plansIntro = document.querySelector('.plans-intro');
+          const plansConclusion = document.querySelector('.plans-conclusion');
+          
+          if (plansTitle) {
+            plansTitle.textContent = translations[lang].plansTitle;
+          }
+          if (plansIntro) {
+            plansIntro.textContent = translations[lang].plansIntro;
+          }
+          if (plansConclusion) {
+            plansConclusion.textContent = translations[lang].plansConclusion;
+          }
+  
+          // Update the plan items
+          const planItems = document.querySelectorAll('.plan-item');
+          planItems[0].querySelector('h3').textContent = translations[lang].participativeCommunityTitle;
+          planItems[0].querySelector('p').textContent = translations[lang].participativeCommunityText;
+  
+          planItems[1].querySelector('h3').textContent = translations[lang].realUtilityTitle;
+          planItems[1].querySelector('p').textContent = translations[lang].realUtilityText;
+  
+          planItems[2].querySelector('h3').textContent = translations[lang].tasksWebTitle;
+          planItems[2].querySelector('p').textContent = translations[lang].tasksWebText;
+  
+          planItems[3].querySelector('h3').textContent = translations[lang].youtubeTitle;
+          planItems[3].querySelector('p').textContent = translations[lang].youtubeText;
+  
+          planItems[4].querySelector('h3').textContent = translations[lang].gamesTitle;
+          planItems[4].querySelector('p').textContent = translations[lang].gamesText;
+  
+          // Update roadmap section
+          const roadmapItems = document.querySelectorAll('.timeline-item');
+          roadmapItems[0].querySelector('.timeline-title').textContent = translations[lang].roadmap1;
+          roadmapItems[0].querySelector('.timeline-description').textContent = translations[lang].roadmap1desc;
+  
+          roadmapItems[1].querySelector('.timeline-title').textContent = translations[lang].roadmap2;
+          roadmapItems[1].querySelector('.timeline-description').textContent = translations[lang].roadmap2desc;
+  
+          roadmapItems[2].querySelector('.timeline-title').textContent = translations[lang].roadmap3;
+          roadmapItems[2].querySelector('.timeline-description').textContent = translations[lang].roadmap3desc;
+  
+          roadmapItems[3].querySelector('.timeline-title').textContent = translations[lang].roadmap4;
+          roadmapItems[3].querySelector('.timeline-description').textContent = translations[lang].roadmap4desc;
+  
+          roadmapItems[4].querySelector('.timeline-title').textContent = translations[lang].roadmap5;
+          roadmapItems[4].querySelector('.timeline-description').textContent = translations[lang].roadmap5desc;
+  
+          roadmapItems[5].querySelector('.timeline-title').textContent = translations[lang].roadmap6;
+          roadmapItems[5].querySelector('.timeline-description').textContent = translations[lang].roadmap6desc;
+  
+          roadmapItems[6].querySelector('.timeline-title').textContent = translations[lang].roadmap7;
+          roadmapItems[6].querySelector('.timeline-description').textContent = translations[lang].roadmap7desc;
+  
+          roadmapItems[7].querySelector('.timeline-title').textContent = translations[lang].roadmap8;
+          roadmapItems[7].querySelector('.timeline-description').textContent = translations[lang].roadmap8desc;
+  
+          // Update token distribution section
+          const tokenDistTitle = document.querySelector('.token-distribution h2');
+          if (tokenDistTitle) {
+            tokenDistTitle.textContent = translations[lang].tokenDistTitle;
+          }
+  
+          const distributionItems = document.querySelectorAll('.distribution-item');
+          distributionItems[0].querySelector('.item-label').textContent = translations[lang].marketLiquidity;
+          distributionItems[1].querySelector('.item-label').textContent = translations[lang].reserveFund;
+          distributionItems[2].querySelector('.item-label').textContent = translations[lang].communityRewards;
+          distributionItems[3].querySelector('.item-label').textContent = translations[lang].salaryPayments;
+          distributionItems[4].querySelector('.item-label').textContent = translations[lang].marketing;
+        }
+      });
+  
+      // Load Chart.js from CDN
+      const chartScript = document.createElement('script');
+      chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+      chartScript.onload = initializeChart;
+      document.head.appendChild(chartScript);
+  
+      // Corrected Chart initialization function
+      function initializeChart() {
+        const ctx = document.getElementById('distributionChart').getContext('2d');
+        const distributionItems = document.querySelectorAll('.distribution-item');
+        
+        const data = {
+          labels: Array.from(distributionItems).map(item => item.querySelector('.item-label').textContent),
+          datasets: [{
+            data: Array.from(distributionItems).map(item => item.dataset.percentage),
+            backgroundColor: ['#3498db', '#2ecc71', '#e4ab1d', '#e74c3c', '#9b59b6'],
+            borderWidth: 0,
+          }]
+        };
+  
+        const config = {
+          type: 'pie',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return `${context.label}: ${context.raw}%`;
+                  }
+                }
+              }
+            },
+            animation: {
+              animateRotate: true,
+              animateScale: true
+            }
+          }
+        };
+  
+        const chart = new Chart(ctx, config);
+        
+        // Add hover effect to distribution items
+        distributionItems.forEach((item, index) => {
+          item.addEventListener('mouseenter', () => {
+            const activeSegments = Array(data.datasets[0].data.length).fill(0.3);
+            activeSegments[index] = 1;
+            chart.setDatasetVisibility(0, true);
+            chart.data.datasets[0].backgroundColor = chart.data.datasets[0].backgroundColor.map((color, i) => 
+              i === index ? color : color + '4D'
+            );
+            chart.update();
+          });
+  
+          item.addEventListener('mouseleave', () => {
+            chart.data.datasets[0].backgroundColor = ['#3498db', '#2ecc71', '#e4ab1d', '#e74c3c', '#9b59b6'];
+            chart.update();
+          });
+        });
+      }
+  
+      // Disclaimer Modal Functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const buyButtons = document.querySelectorAll('a[href*="ston.fi"]');
+        const modal = document.getElementById('disclaimerModal');
+        const closeBtn = document.querySelector('.close-modal');
+        const acceptBtn = document.getElementById('acceptRisks');
+        let purchaseUrl = '';
+  
+        buyButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            e.preventDefault();
+            purchaseUrl = this.href;
+            modal.style.display = 'flex';
+          });
+        });
+  
+        function closeModal() {
+          modal.style.display = 'none';
+        }
+  
+        closeBtn.addEventListener('click', closeModal);
+  
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+  
+        acceptBtn.addEventListener('click', function() {
+          window.open(purchaseUrl, '_blank');
+          closeModal();
+        });
+  
+        // Add escape key functionality
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
+          }
+        });
+      });
+  
+      // Smooth scrolling for navigation links
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        // Add click event listener to each link
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the target section id from the href
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+              // Calculate position with navbar offset
+              const navbarHeight = document.querySelector('.navbar').offsetHeight;
+              const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+              
+              // Smooth scroll to target
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+  </html>
